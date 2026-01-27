@@ -176,18 +176,24 @@ Both produce identical results; vectorized is faster.
 
 #### Both Notebooks in SageMaker
 
-<!-- TODO: Insert screenshot showing both notebooks visible in SageMaker file browser -->
+
 ![SageMaker Notebooks](screenshots/sagemaker-notebooks.png)
 
 #### Successful Execution - Notebook 1
 
-<!-- TODO: Insert screenshot showing cells executed with outputs in Notebook 1 -->
-![Notebook 1 Execution](screenshots/notebook1-execution.png)
+
+![Notebook 1 Execution](screenshots/notebook1-execution1.png)
+![Notebook 1 Execution](screenshots/notebook1-execution2.png)
+![Notebook 1 Execution](screenshots/notebook1-execution3.png)
+![Notebook 1 Execution](screenshots/notebook1-execution4.png)
 
 #### Successful Execution - Notebook 2
 
 <!-- TODO: Insert screenshot showing cells executed with outputs in Notebook 2 -->
-![Notebook 2 Execution](screenshots/notebook2-execution.png)
+![Notebook 2 Execution](screenshots/notebook2-execution1.png)
+![Notebook 2 Execution](screenshots/notebook2-execution2.png)
+![Notebook 2 Execution](screenshots/notebook2-execution3.png)
+![Notebook 2 Execution](screenshots/notebook2-execution4.png)
 
 #### Plot Rendered in SageMaker
 
@@ -200,7 +206,7 @@ Both produce identical results; vectorized is faster.
 | Aspect | Local Execution | SageMaker Execution |
 |--------|-----------------|---------------------|
 | Environment Setup | Pre-configured | Managed kernel |
-| Execution Speed | [Your observation] | [Your observation] |
+| Execution Speed | slower | faster |
 | Plot Rendering | Inline (matplotlib) | Inline (matplotlib) |
 | Differences | [Any issues or differences] | [Any issues or differences] |
 
