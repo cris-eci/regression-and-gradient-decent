@@ -168,8 +168,8 @@ Both produce identical results; vectorized is faster.
 
 <!-- TODO: Describe how you uploaded the notebooks to SageMaker -->
 1. Accessed AWS SageMaker through the AWS Console
-2. Created/opened a SageMaker Notebook Instance (or SageMaker Studio)
-3. Uploaded both `.ipynb` files to the SageMaker environment
+2. Created/opened a SageMaker Notebook Instance (or SageMaker Studio) - code editor in this case named my space
+3. Uploaded both `.ipynb` files to the SageMaker environment by dragging them to the vsc cloud editor
 4. Selected the appropriate Python kernel with NumPy and Matplotlib
 
 ### Screenshots
@@ -208,7 +208,7 @@ Both produce identical results; vectorized is faster.
 | Environment Setup | Pre-configured | Managed kernel |
 | Execution Speed | slower | faster |
 | Plot Rendering | Inline (matplotlib) | Inline (matplotlib) |
-| Differences | [Any issues or differences] | [Any issues or differences] |
+| Differences | Local is kind of slower | Cloud is faster |
 
 ---
 
@@ -236,8 +236,8 @@ Both produce identical results; vectorized is faster.
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd regression
+git clone https://github.com/cris-eci/Regression-and-cloud-ready-AI-infrastructure.git
+cd Regression-and-cloud-ready-AI-infrastructure.gitl
 
 # Install dependencies (if needed)
 pip install numpy matplotlib
@@ -256,7 +256,7 @@ jupyter notebook
 
 ## 👤 Author
 
-**[Your Name]**
+**Cristian Santiago Pedraza Rodriguez**
 
 Machine Learning Bootcamp — Digital Transformation and Enterprise Architecture
 
