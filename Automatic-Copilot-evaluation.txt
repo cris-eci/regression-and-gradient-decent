@@ -1,0 +1,296 @@
+================================================================================
+AUTOMATIC COPILOT EVALUATION – TA GRADING REPORT
+Course: Machine Learning Bootcamp – Digital Transformation and Enterprise Architecture
+Assignment: Stellar Luminosity – Linear and Polynomial Regression from First Principles
+Evaluator: GitHub Copilot (automated TA)
+Date: 2026-03-01
+================================================================================
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+This submission demonstrates a strong command of regression fundamentals and
+gradient-based optimization. Both notebooks are well-organized, technically
+correct, and cover all MANDATORY items specified in the assignment. Notebook 1
+implements scalar linear regression from scratch with both a non-vectorized
+(loop-based) and a fully vectorized gradient computation, a proper cost-surface
+visualization, three learning-rate experiments, and thoughtful physical
+interpretation. Notebook 2 extends the work to multi-feature polynomial
+regression, includes correct matrix-form gradients, a rigorous model-selection
+comparison (M1/M2/M3), an interaction-coefficient sensitivity sweep, and a
+well-reasoned inference example. The README describes the SageMaker execution
+process and references ten screenshot files (all present in the repository).
+Minor deductions apply for leftover TODO placeholder comments in the README and
+a slightly superficial local-vs-cloud comparison table.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. GRADING BREAKDOWN  (0.0 – 5.0 scale)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+──────────────────────────────────────────────────────────
+2.1  Repository Structure & Compliance          0.5 / 0.5
+──────────────────────────────────────────────────────────
+• README.md present and detailed.                              ✓
+• Two notebooks covering Part I (linear) and Part II (poly).   ✓
+• Datasets defined entirely inside each notebook.              ✓
+• Only Python, NumPy, and Matplotlib imported; no ML libraries ✓
+  (scikit-learn, TensorFlow, etc. explicitly excluded in README).
+• Repository layout matches the recommended structure.         ✓
+
+No deductions.
+
+──────────────────────────────────────────────────────────
+2.2  Notebook 1 – Linear Regression            1.9 / 2.0
+──────────────────────────────────────────────────────────
+• Dataset visualization (scatter plot M vs L) and linearity
+  commentary.                                                  ✓
+• predict() and compute_cost() (MSE, 1/2m factor) implemented
+  correctly.                                                   ✓
+• Cost surface: 3D surface + contour plot + written
+  interpretation (convexity, elongated ellipses).              ✓  [MANDATORY]
+• Gradient derivation: both partial derivatives shown
+  symbolically in Markdown cells and verified numerically.     ✓
+• Non-vectorized gradient (explicit loop) implemented and
+  tested.                                                      ✓
+• Vectorized gradient (NumPy) implemented; numerical equality
+  with loop version confirmed.                                 ✓
+• Gradient descent training loop (vectorized) with cost
+  history.                                                     ✓
+• Convergence plot (full + zoomed) with before/after cost
+  values.                                                      ✓  [MANDATORY]
+• Learning-rate experiments: α ∈ {0.01, 0.1, 0.5} –
+  three rates, comparative discussion.                         ✓  [MANDATORY]
+• Final fit plot with residuals overlaid; MAE and RMSE
+  printed.                                                     ✓
+• Conceptual questions: astrophysical meaning of w
+  (≈18 L☉/M☉) and limits of linearity (power-law L∝M^3.5
+  discussed).                                                  ✓
+
+Minor deduction (-0.1):
+• The three learning-rate convergence subplots do not share a
+  common y-axis (only α > 0.01 panels have ylim=100), making
+  visual comparison between α = 0.01 and the others difficult.
+
+──────────────────────────────────────────────────────────
+2.3  Notebook 2 – Polynomial Regression        1.9 / 2.0
+──────────────────────────────────────────────────────────
+• 2D scatter (L vs M, colour-coded by T) and 3D scatter
+  (M, T, L) visualizations.                                    ✓
+• build_features() constructs [M, T, M², M·T] with NumPy
+  column_stack; feature names tracked.                         ✓
+• Z-score standardization applied; scaling parameters saved
+  for inference reuse.                                         ✓
+• Vectorized MSE cost (matrix form) and vectorized gradients
+  (X^T e) implemented correctly.                               ✓
+• Training loop with cost history; convergence plot (full +
+  last-50% zoomed).                                            ✓
+• Feature selection M1/M2/M3 comparison, costs reported,
+  predicted-vs-actual scatter plots produced.                  ✓  [MANDATORY]
+• Interaction cost analysis: cost vs w_MT swept over a range
+  while other parameters are fixed at trained values; minimum
+  identified and plotted.                                      ✓  [MANDATORY]
+• Inference demo: new star (M=1.3, T=6600) predicted with all
+  three models; reasonableness check against bracketing
+  training points; visualization included.                     ✓  [MANDATORY]
+• Physical interpretation of each weight coefficient
+  provided.                                                    ✓
+
+Minor deduction (-0.1):
+• The cost-vs-w_MT sweep fixes the remaining weights at their
+  M3-trained values rather than re-optimizing; this is a
+  valid cross-section analysis but is not a full sensitivity
+  sweep. The distinction is not explained in the notebook.
+
+──────────────────────────────────────────────────────────
+2.4  Cloud Execution Evidence (SageMaker)      0.45 / 0.5
+──────────────────────────────────────────────────────────
+• README describes the SageMaker upload/execution process
+  (drag-to-upload, kernel selection, etc.).                    ✓
+• Ten screenshots present and referenced (sagemaker-notebooks,
+  notebook1-execution1–4, notebook2-execution1–4,
+  sagemaker-plot).                                             ✓
+• At least one plot screenshot included (sagemaker-plot.png).  ✓
+• Local vs. SageMaker comparison table present.                ✓
+
+Minor deduction (-0.05):
+• Four HTML TODO placeholder comments remain in the README
+  (e.g., <!-- TODO: Describe how you uploaded the notebooks
+  to SageMaker -->). The required content appears below each
+  placeholder, but the uncleaned comments reduce polish.
+• The local vs. cloud comparison entries ("kind of slower" /
+  "faster") are very terse; a sentence or two of quantitative
+  or qualitative reasoning would strengthen this section.
+
+──────────────────────────────────────────────────────────
+TOTALS
+──────────────────────────────────────────────────────────
+  Repository structure & compliance:   0.50 / 0.5
+  Notebook 1 – Linear regression:      1.90 / 2.0
+  Notebook 2 – Polynomial regression:  1.90 / 2.0
+  Cloud execution evidence:            0.45 / 0.5
+  ─────────────────────────────────────────────────
+  TOTAL:                                4.75 / 5.0
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. FINAL GRADE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Final grade: 4.75 / 5.0
+
+Result: PASS  (minimum passing grade is 3.0 / 5.0)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+4. STRENGTHS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Complete coverage: every MANDATORY item (cost surface, convergence plot,
+  learning-rate experiments, M1/M2/M3 comparison, w_MT sweep, inference demo)
+  is present and functional.
+
+• Correct mathematics: gradient derivations match standard MSE gradient
+  formulae; the non-vectorized and vectorized implementations are verified to
+  produce numerically identical results (difference < 1e-10).
+
+• Progressive complexity: the two notebooks form a coherent pedagogical arc
+  from scalar linear regression to multi-feature polynomial regression, with
+  each concept building on the previous.
+
+• Feature engineering: build_features() cleanly handles all three model
+  variants (M1/M2/M3) with appropriate NumPy vectorization, and standardize()
+  correctly saves μ and σ for consistent inference-time scaling.
+
+• Physical grounding: the astrophysical interpretations (L ∝ M^3.5 power law,
+  Stefan-Boltzmann rationale for M×T interaction, w ≈ 18 L☉ per M☉) are
+  accurate and clearly explained.
+
+• Cloud evidence: ten screenshots document the full SageMaker execution
+  lifecycle for both notebooks, including a rendered plot.
+
+• Clean library compliance: only numpy and matplotlib are imported across both
+  notebooks; no high-level ML libraries are used.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+5. ISSUES & MISSING ELEMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Leftover TODO HTML comments in README.md (four instances): while the
+  associated content is present below each comment, the unresolved placeholders
+  indicate incomplete final editing.
+
+• Learning-rate comparison plots (Notebook 1, Section 10) use inconsistent
+  y-axis limits: α = 0.01 has no y-limit cap, while α = 0.1 and α = 0.5 are
+  capped at 100. This makes comparing convergence speed across all three rates
+  at a glance harder than it should be.
+
+• Cost-vs-w_MT analysis (Notebook 2, Section 7) performs a 1-D cross-section
+  of the cost surface with other weights fixed, which is correct but represents
+  a partial sensitivity analysis. The notebook does not clarify that the plotted
+  minimum coincides with the trained value only because the other weights are
+  fixed, which could mislead a reader into thinking w_MT was independently
+  optimal.
+
+• Local vs. cloud comparison in README is very brief ("kind of slower" /
+  "faster") without any specific timing, resource, or behavioral observations.
+
+• Minor typo in README How-to-Run section: the `cd` command ends with
+  `.gitl` instead of `.git` (extra 'l').
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6. TA FEEDBACK TO STUDENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+This is a well-executed submission that clearly meets the assignment objectives.
+Your implementation of both gradient variants is correct, and you demonstrated
+good judgment in choosing feature engineering steps (standardization before
+training, saving scaling parameters for inference). The astrophysical context
+is used effectively throughout to motivate modelling choices.
+
+A few suggestions for improvement:
+
+1. When showing convergence for multiple learning rates, use a shared y-axis or
+   log scale so that slow vs. fast rates are directly comparable in the same
+   figure. This is a minor but impactful visualization improvement.
+
+2. In the cost-vs-w_MT section, add a sentence clarifying that the plot is a
+   1-D cross-section of a multi-dimensional cost surface with the remaining
+   parameters held fixed. This demonstrates that you understand the distinction
+   between a marginal cross-section and a full sensitivity analysis.
+
+3. Clean up README TODO placeholders before submission — they signal to readers
+   that the document was not fully finalized.
+
+4. Expand the local-vs-cloud comparison with at least one concrete observation
+   (e.g., kernel startup time, memory availability, or any SageMaker-specific
+   behaviour you noticed) to make that section substantive.
+
+Overall, strong work — you clearly understand the mechanics of gradient descent
+and polynomial feature engineering from first principles.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+7. AI-GENERATION ASSESSMENT  (NON-GRADING – informational only)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+A. Qualitative Assessment
+──────────────────────────
+
+Indicators suggesting AI-assisted generation:
+  • Markdown cells follow a highly uniform structure across both notebooks
+    (consistent header hierarchy, identical table formatting, parallel section
+    ordering).
+  • Explanations are complete and polished with few signs of exploratory or
+    iterative reasoning; there are no commented-out attempts, no partial
+    derivations with corrections, and no informal "scratch" comments.
+  • The physical interpretations (power-law exponent 3.5, Stefan-Boltzmann
+    rationale) are accurate and well-phrased in a manner typical of textbook or
+    AI-generated scientific prose.
+  • Section and function docstrings are comprehensive and consistently
+    formatted, including parameter type annotations in docstrings, which is
+    uncommon in student homework produced under time pressure.
+  • The README reads as a polished project document rather than a personal
+    lab notebook, with badges, structured tables, and boilerplate sections that
+    match common AI-generated GitHub READMEs.
+
+Indicators consistent with human authorship:
+  • The leftover TODO comments in README.md suggest a student who used a
+    template but did not fully review the final document — a human editing
+    oversight rather than a polished AI output.
+  • The local vs. cloud comparison is superficial ("kind of slower"), which
+    reflects a genuine gap in observation rather than confident AI-generated
+    content.
+  • The typo in the README clone URL (.gitl) is a small human-introduced error.
+  • The choice to fix other parameters while sweeping w_MT (Section 7 of
+    Notebook 2) is a pragmatic shortcut that a student might choose over a
+    more thorough multi-dimensional sweep.
+
+B. Quantitative Estimate
+─────────────────────────
+
+  Code (functions, training loops, plotting):    ~70% AI-assisted
+  Explanations / Markdown narrative:             ~75% AI-assisted
+  README:                                        ~65% AI-assisted
+
+C. Commentary
+──────────────
+
+The overall structure, thoroughness, and stylistic consistency of this
+submission are consistent with heavy AI tool assistance — likely a combination
+of AI-generated scaffolding and student-directed refinements. The few human
+signals (leftover TODOs, a superficial comparison table, minor typos) suggest
+the student directed the AI tool and reviewed but did not substantially rewrite
+the generated content. However, the underlying concepts are implemented
+correctly and in accordance with the assignment constraints, indicating that the
+student understood what was being produced.
+
+This assessment is observational and does not imply misconduct.
+
+================================================================================
+END OF REPORT
+================================================================================
